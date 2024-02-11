@@ -1,15 +1,11 @@
 name: Java CI with Gradle
 
-
 on: [ push, pull_request ]
-
 
 jobs:
   build:
 
-
     runs-on: ubuntu-latest
-
 
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +20,10 @@ jobs:
         # Запускаем SUT,
         # имя файла SUT будет отличаться в каждой задаче.
         # & означает, что в фоновом режиме не блокируем терминал для запуска тестов,
+        # обязательно должен быть для запуска SUT в CI
         run: java -jar ./artifacts/app-ibank-build-for-testers.jar &
       - name: Build with Gradle
+        # Запускаем автотесты
+        # Для проектов на базе Selenide необходимо добавить параметр для запуска браузера
+        # в headless режиме -Dselenide.headless=true, параметр --info должен остаться
         run: ./gradlew test -Dselenide.headless=true --info
