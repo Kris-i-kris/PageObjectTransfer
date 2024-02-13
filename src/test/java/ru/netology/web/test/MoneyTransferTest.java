@@ -71,7 +71,6 @@ class MoneyTransferTest {
                 () -> assertEquals(firstCardBalance, actualBalanceFirstCard),
                 () -> assertEquals(secondCardBalance, actualBalanceSecondCard));
     }
-
 }
 
 
