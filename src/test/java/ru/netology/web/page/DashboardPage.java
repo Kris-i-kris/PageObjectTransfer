@@ -5,12 +5,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 import ru.netology.web.data.DataHelper;
-
-import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.impl.Html.text;
+
 
 public class DashboardPage {
     private final ElementsCollection cards = $$(".list__item div");
@@ -21,10 +19,7 @@ public class DashboardPage {
     public DashboardPage() {
         heading.shouldBe(visible);
     }
-//    public int getCardBalance(DataHelper.CardInfo cardInfo) {
-//        val text = cards.findBy(Condition.attribute("data-test-id" + cardInfo.getCardNumber().substring(15))).getText();
-//        return extractBalance(text);
-//    }
+
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
         cards.findBy(Condition.attribute("data-test-id", cardInfo.getTessId())).$("button").click();
@@ -35,9 +30,6 @@ public class DashboardPage {
         var text = cards.findBy(Condition.text("**** **** **** " + cardInfo.getCardNumber().substring(15))).getText();
         return extractBalance(text);
     }
-
-
-
 
     private int extractBalance(String text) {
         val start = text.indexOf(balanceStart);

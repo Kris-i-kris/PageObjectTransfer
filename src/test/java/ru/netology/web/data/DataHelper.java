@@ -4,7 +4,6 @@ import lombok.Value;
 
 import java.util.Random;
 
-
 public class DataHelper {
     private DataHelper() {
     }
@@ -12,10 +11,6 @@ public class DataHelper {
     public static AuthInfo getAuthInfo() {
 
         return new AuthInfo("vasya", "qwerty123");
-    }
-
-    public static AuthInfo getOtherAuthInfo(AuthInfo original) {
-        return new AuthInfo("petya", "123qwerty");
     }
 
     public static VerificationCode getVerificationCodeFor() {
@@ -56,5 +51,4 @@ public class DataHelper {
         String cardNumber;
         String tessId;
     }
-
 }
